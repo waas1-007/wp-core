@@ -57,8 +57,8 @@ if( !file_exists($envVarsFilePath) ) {
 $evnVars = parse_ini_file( $envVarsFilePath, false, INI_SCANNER_TYPED );
 
 
-
-
+//redis cache
+define( 'WP_REDIS_PREFIX', 'n'.THIS_CONTROLLER_TAG.'site'.THIS_SITE_ID );
 
 
 
@@ -66,22 +66,6 @@ $evnVars = parse_ini_file( $envVarsFilePath, false, INI_SCANNER_TYPED );
 if ( file_exists( $HOSTENVHEADER.'/wp-salts.php' ) ) {
 	require_once( $HOSTENVHEADER.'/wp-salts.php' );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -293,7 +277,7 @@ define('DB_HOST', 		WAAS1_DB_HOST);
 define( 'WP_HOME', 			WAAS1_WP_HOME );
 define( 'WP_CONTENT_URL', 	WAAS1_WP_CONTENT_URL );
 define( 'WP_CONTENT_DIR', 	WAAS1_WP_CONTENT_DIR );
-define( 'FS_METHOD', 'direct' ); //this seems important
+define( 'FS_METHOD', 'direct' );
 
 
 
@@ -309,11 +293,15 @@ define( 'FS_METHOD', 'direct' ); //this seems important
 //disable site health email notifications
 define( 'WP_DISABLE_FATAL_ERROR_HANDLING', true );
 
+//debug
+define( 'WP_DEBUG_LOG', false ); //do not allow users to log the errors as we are already doing it in the /logs directory of each site in this file php-error.log
+//set debug valuse following constant in wp-config.php and save it in /var/www/site{ID}/wp-content
+//define( 'WP_DEBUG', true );
+//define( 'WP_DEBUG_DISPLAY', true );
+
 
 //disable plugin and theme editor
 define( 'DISALLOW_FILE_EDIT', true ); 
-
-
 
 
 //disable wordpress cron
@@ -333,8 +321,6 @@ define('WP_POST_REVISIONS', false );
 
 
 //plugins related settings starts here
-
-
 //autooptimize plugin settings
 define( 'AUTOPTIMIZE_CACHE_URL', '//'.CFCDN_FC_DOMAIN_TLD.'/wp-content/cache/autoptimize/' );
 //define( 'AUTOPTIMIZE_CACHE_NOGZIP', true ); //very important without autoptimize will start making php files
@@ -356,11 +342,7 @@ define( 'BP_PLUGIN_URL', WP_CONTENT_URL . '/plugins/buddyboss-platform/' );
 //updraftplus 
 define('UPDRAFTPLUS_ADMINBAR_DISABLE', true);
 
-//debug
-define( 'WP_DEBUG_LOG', false ); //do not allow users to log the errors as we are already doing it in the /logs directory of each site in this file php-error.log
-//set debug valuse following constant in wp-config.php and save it in /var/www/site{ID}/wp-content
-//define( 'WP_DEBUG', true );
-//define( 'WP_DEBUG_DISPLAY', true );
+
 
 
 if( isset($evnVars['WAAS1_RESTRICTION_CONCATENATE_SCRIPTS']) ){
