@@ -57,10 +57,6 @@ if( !file_exists($envVarsFilePath) ) {
 $evnVars = parse_ini_file( $envVarsFilePath, false, INI_SCANNER_TYPED );
 
 
-//redis cache
-define( 'WP_REDIS_PREFIX', 'n'.THIS_CONTROLLER_TAG.'site'.THIS_SITE_ID );
-
-
 
 //load wp salts if found
 if ( file_exists( $HOSTENVHEADER.'/wp-salts.php' ) ) {
@@ -103,6 +99,14 @@ define( 'WAAS1_WP_DEBUG_LOG', 		$evnVars['WAAS1_WP_DEBUG_LOG'] );
 define( 'PLATFORM_BRAND_LOGO_URL', 		$evnVars['PLATFORM_BRAND_LOGO_URL'] );
 define( 'PLATFORM_BRAND_SITE_URL', 		$evnVars['PLATFORM_BRAND_SITE_URL'] );
 define( 'PLATFORM_BRAND_NAME', 			$evnVars['PLATFORM_BRAND_NAME'] );
+
+
+
+
+
+
+//redis cache
+define( 'WP_REDIS_PREFIX', 'n'.THIS_CONTROLLER_TAG.'site'.THIS_SITE_ID );
 
 
 
