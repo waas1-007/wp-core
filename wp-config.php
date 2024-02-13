@@ -88,6 +88,9 @@ define( 'WAAS1_DB_USER', 			$evnVars['WAAS1_DB_USER'] );
 define( 'WAAS1_DB_PASSWORD', 		$evnVars['WAAS1_DB_PASSWORD'] );
 define( 'WAAS1_DB_NAME', 			$evnVars['WAAS1_DB_NAME'] );
 
+define( 'WAAS1_WP_REDIS_DATABASE', 			$evnVars['WAAS1_WP_REDIS_DATABASE'] );
+
+
 
 
 define( 'WAAS1_WP_HOME', 			$evnVars['WAAS1_WP_HOME'] );
@@ -106,7 +109,20 @@ define( 'PLATFORM_BRAND_NAME', 			$evnVars['PLATFORM_BRAND_NAME'] );
 
 
 //redis cache
-define( 'WP_REDIS_PREFIX', 'n'.THIS_CONTROLLER_TAG.'site'.THIS_SITE_ID );
+
+define( 'WP_REDIS_DATABASE', WAAS1_WP_REDIS_DATABASE );
+//define( 'WP_REDIS_PREFIX', 's'.THIS_SITE_ID );
+define( 'WP_REDIS_SCHEME', 'unix' );
+define( 'WP_REDIS_PATH', '/var/run/redis/redis-server.sock' );
+
+define( 'WP_REDIS_IGBINARY', true );
+define( 'WP_REDIS_DISABLE_METRICS', true );
+define( 'WP_REDIS_DISABLE_BANNERS', true );
+define( 'WP_REDIS_DISABLE_ADMINBAR', true );
+define( 'WP_REDIS_DISABLE_DROPIN_CHECK', true );
+define( 'WP_REDIS_DISABLE_DROPIN_AUTOUPDATE', true );
+
+
 
 
 
