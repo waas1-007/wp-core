@@ -22,23 +22,20 @@ $_SERVER["HTTPS"] = "on";
 
 
 
-//start from here
-//get the site id from the env file
-//first check for the local file and if not found check for the live file
-
+//Setup env vars
 if( isset($_SERVER['X-WAAS1-TENANT']) ){
 	$HOSTENVHEADER = $_SERVER['X-WAAS1-TENANT'];
 }else{
 	$HOSTENVHEADER = $_SERVER['DOCUMENT_ROOT'];
 }
 
-$envVarsFilePath = $HOSTENVHEADER.'/env-vars-dynamic-local.ini'; //first level make sure not to give back slash \ as it will work on windows but will not working on linux. forward slash works on both OS 
+$envVarsFilePath = $HOSTENVHEADER.'/env-vars-dynamic-local.ini';
 if( !file_exists($envVarsFilePath) ) {
 
-	$envVarsFilePath = $HOSTENVHEADER.'/env-vars-dynamic.ini'; //if we are here it means maybe we are using a local test env
+	$envVarsFilePath = $HOSTENVHEADER.'/env-vars-dynamic.ini';
 	if( !file_exists($envVarsFilePath) ) {
 		
-		//it means we are in cli or something else
+		//for CLI
 		$envVarsFilePath = 'env-vars-dynamic-local.ini';
 		if( !file_exists($envVarsFilePath) ) {
 			
@@ -73,43 +70,38 @@ if ( file_exists( $HOSTENVHEADER.'/wp-salts.php' ) ) {
 
 //load main wp config
 //define all the ENV constants here
-define( 'THIS_ENV_IS_LOCAL', 		$evnVars['THIS_ENV_IS_LOCAL'] );
-define( 'THIS_SITE_ID', 			$evnVars['THIS_SITE_ID'] );
-define( 'THIS_CONTROLLER_TAG', 		$evnVars['THIS_CONTROLLER_TAG'] );
+define( 'THIS_ENV_IS_LOCAL',    $evnVars['THIS_ENV_IS_LOCAL'] );
+define( 'THIS_SITE_ID', 			  $evnVars['THIS_SITE_ID'] );
+define( 'THIS_CONTROLLER_TAG',  $evnVars['THIS_CONTROLLER_TAG'] );
 
 
-define( 'WAAS1_PLATFORM_DOMAIN', 	$evnVars['WAAS1_PLATFORM_DOMAIN'] );
-define( 'WAAS1_SITE_API_KEY', 		$evnVars['WAAS1_SITE_API_KEY'] );
-define( 'WAAS1_SITE_API_URL', 		$evnVars['WAAS1_SITE_API_URL'] );
+define( 'WAAS1_PLATFORM_DOMAIN',  $evnVars['WAAS1_PLATFORM_DOMAIN'] );
+define( 'WAAS1_SITE_API_KEY',     $evnVars['WAAS1_SITE_API_KEY'] );
+define( 'WAAS1_SITE_API_URL',     $evnVars['WAAS1_SITE_API_URL'] );
 
 
-define( 'WAAS1_DB_HOST', 			$evnVars['WAAS1_DB_HOST'] );
+define( 'WAAS1_DB_HOST',      $evnVars['WAAS1_DB_HOST'] );
 define( 'WAAS1_DB_USER', 			$evnVars['WAAS1_DB_USER'] );
-define( 'WAAS1_DB_PASSWORD', 		$evnVars['WAAS1_DB_PASSWORD'] );
+define( 'WAAS1_DB_PASSWORD',  $evnVars['WAAS1_DB_PASSWORD'] );
 define( 'WAAS1_DB_NAME', 			$evnVars['WAAS1_DB_NAME'] );
 
-define( 'WAAS1_WP_REDIS_DATABASE', 			$evnVars['WAAS1_WP_REDIS_DATABASE'] );
+
+define( 'WAAS1_WP_REDIS_DATABASE',  $evnVars['WAAS1_WP_REDIS_DATABASE'] );
 
 
-
-
-define( 'WAAS1_WP_HOME', 			$evnVars['WAAS1_WP_HOME'] );
-define( 'WAAS1_WP_CONTENT_URL', 	$evnVars['WAAS1_WP_CONTENT_URL'] );
+define( 'WAAS1_WP_HOME',          $evnVars['WAAS1_WP_HOME'] );
+define( 'WAAS1_WP_CONTENT_URL',   $evnVars['WAAS1_WP_CONTENT_URL'] );
 define( 'WAAS1_WP_CONTENT_DIR', 	$evnVars['WAAS1_WP_CONTENT_DIR'] );
 define( 'WAAS1_WP_DEBUG_LOG', 		$evnVars['WAAS1_WP_DEBUG_LOG'] );
 
 
-define( 'PLATFORM_BRAND_LOGO_URL', 		$evnVars['PLATFORM_BRAND_LOGO_URL'] );
-define( 'PLATFORM_BRAND_SITE_URL', 		$evnVars['PLATFORM_BRAND_SITE_URL'] );
-define( 'PLATFORM_BRAND_NAME', 			$evnVars['PLATFORM_BRAND_NAME'] );
-
-
-
+define( 'PLATFORM_BRAND_LOGO_URL',  $evnVars['PLATFORM_BRAND_LOGO_URL'] );
+define( 'PLATFORM_BRAND_SITE_URL',  $evnVars['PLATFORM_BRAND_SITE_URL'] );
+define( 'PLATFORM_BRAND_NAME',      $evnVars['PLATFORM_BRAND_NAME'] );
 
 
 
 //redis cache
-
 define( 'WP_REDIS_DATABASE', WAAS1_WP_REDIS_DATABASE );
 //define( 'WP_REDIS_PREFIX', 's'.THIS_SITE_ID );
 define( 'WP_REDIS_SCHEME', 'unix' );
