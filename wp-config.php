@@ -104,8 +104,8 @@ define( 'PLATFORM_BRAND_NAME',      $evnVars['PLATFORM_BRAND_NAME'] );
 //redis cache
 define( 'WP_REDIS_DATABASE', WAAS1_WP_REDIS_DATABASE );
 //define( 'WP_REDIS_PREFIX', 's'.THIS_SITE_ID );
-define( 'WP_REDIS_SCHEME', 'unix' );
-define( 'WP_REDIS_PATH', '/var/run/redis/redis-server.sock' );
+//define( 'WP_REDIS_SCHEME', 'unix' );
+//define( 'WP_REDIS_PATH', '/var/run/redis/redis-server.sock' );
 
 define( 'WP_REDIS_IGBINARY', true );
 define( 'WP_REDIS_DISABLE_METRICS', true );
@@ -114,6 +114,9 @@ define( 'WP_REDIS_DISABLE_ADMINBAR', true );
 define( 'WP_REDIS_DISABLE_DROPIN_CHECK', true );
 define( 'WP_REDIS_DISABLE_DROPIN_AUTOUPDATE', true );
 
+define( 'WP_REDIS_CLIENT', 'predis' );
+define( 'WP_REDIS_SENTINEL', 'mymaster' );
+define( 'WP_REDIS_SERVERS', ['tcp://127.0.0.1:26379',] );
 
 
 
