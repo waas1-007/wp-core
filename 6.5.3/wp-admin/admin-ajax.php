@@ -1,5 +1,4 @@
 <?php
-// Note: This file exists as a near-copy of /wp-admin/admin-ajax.php so that caching on this URL can occur.
 /**
  * WordPress Ajax Process Execution
  *
@@ -16,21 +15,11 @@
  */
 define( 'DOING_AJAX', true );
 if ( ! defined( 'WP_ADMIN' ) ) {
-	//define( 'WP_ADMIN', true );
-	define( 'WP_ADMIN', false );
+	define( 'WP_ADMIN', true );
 }
-
-// Fake being the real admin-ajax.php so some WordPress functions run correctly.
-//$_SERVER['PHP_SELF'] = '/wp-admin/admin-ajax.php';
 
 /** Load WordPress Bootstrap */
 require_once dirname( __DIR__ ) . '/wp-load.php';
-
-//$str_location_wp_load = dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . '/wp-load.php';
-//if ( !file_exists($str_location_wp_load) ) { // Handle local development environments that are using symlinks.
-//	$str_location_wp_load = $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php';
-//}
-//require_once( $str_location_wp_load );
 
 /** Allow for cross-domain requests (from the front end). */
 send_origin_headers();
@@ -53,8 +42,7 @@ send_nosniff_header();
 nocache_headers();
 
 /** This action is documented in wp-admin/admin.php */
-//do_action( 'admin_init' );
-//do_action( 'admin_init' ); // Disable as we'll never be using this file to do things only for logged-in users.
+do_action( 'admin_init' );
 
 $core_actions_get = array(
 	'fetch-list',
